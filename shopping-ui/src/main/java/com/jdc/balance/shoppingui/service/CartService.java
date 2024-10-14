@@ -1,17 +1,28 @@
 package com.jdc.balance.shoppingui.service;
 
 import com.jdc.balance.shoppingui.dto.CartItem;
+import com.jdc.balance.shoppingui.dto.CartItemDto;
+import com.jdc.balance.shoppingui.dto.OrderDetailsDto;
+import com.jdc.balance.shoppingui.dto.UserInfoDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClient;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Service
-@RequiredArgsConstructor
 public class CartService {
     private final ProductService productService;
+    private final RestClient backendRestClient;
+
+    public CartService(ProductService productService) {
+        this.productService = productService;
+        backendRestClient = RestClient.builder().baseUrl("http://localhost:8090/shopping/backend").build();
+    }
+
     @Getter
     Set<CartItem> cartItems = new HashSet<>();
 
@@ -58,5 +69,32 @@ public class CartService {
 
     public void clearCart() {
         cartItems.clear();
+    }
+
+    public void saveOrderDetails(UserInfoDto userInfo) {
+        var orderDetailsDto = getOrderDetailsDto(userInfo);
+
+        backendRestClient.post().uri("/save-order-details")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(orderDetailsDto)
+                .retrieve()
+                .body(String.class);
+    }
+
+    public OrderDetailsDto getOrderDetailsDto(UserInfoDto userInfo) {
+        OrderDetailsDto orderDetailsDto = new OrderDetailsDto();
+        orderDetailsDto.setName(userInfo.getName());
+        orderDetailsDto.setEmail(userInfo.getEmail());
+        orderDetailsDto.setPhone(userInfo.getPhoneNumber());
+        orderDetailsDto.setAddress(userInfo.getAddress());
+
+        getCartItems().forEach(item -> {
+            CartItemDto cartItemDto = new CartItemDto();
+            cartItemDto.setName(item.getName());
+            cartItemDto.setQuantity(item.getQuantity());
+            cartItemDto.setPrice(item.getPrice());
+            orderDetailsDto.addItem(cartItemDto);
+        });
+        return orderDetailsDto;
     }
 }

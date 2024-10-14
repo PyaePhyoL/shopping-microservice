@@ -9,11 +9,15 @@ import java.util.Set;
 @Getter
 @Setter
 public class OrderDetailsDto {
-    private String orderNumber;
-    private Set<CartItemDto> productDtoList=
+    private int orderNumber;
+    private Set<CartItemDto> productList=
             new HashSet<>();
     private String name;
     private String address;
     private String email;
     private String phone;
+
+    public void addItem(CartItemDto itemDto) {
+        productList.add(itemDto);
+    }
 }

@@ -4,77 +4,81 @@
 
 <body>
 <main role="main">
-    <h3>In order to purchase in your shopping cart items, you must supply following information fist.</h3>
-    <div class="row">
-        <div class="col">
-            <div class="row">
-                <div class="col">
-                    <div class="card bg-warning">
-                        <div class="card-body">
-                            <form th:action="@{/shopping/ui/buy-transaction}"
-                            th:object="${userInfo}" method="post">
-                                <div class="mb-3">
-                                    <label class="form-label">Name</label>
-                                    <input type="text"
-                                           th:field="*{name}"
-                                           class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Email</label>
-                                    <input type="text"
-                                           th:field="*{email}"
-                                           class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Phone</label>
-                                    <input type="text"
-                                           th:field="*{phoneNumber}"
-                                           class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Address</label>
-                                    <input type="text"
-                                           th:field="*{address}"
-                                           class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">CreditNumber</label>
-                                    <input type="text"
-                                           th:field="*{creditCardNumber}"
-                                           class="form-control">
-                                </div>
-                                <input type="submit" value="buy"
-                                class="btn btn-primary w-100">
-                            </form>
+    <div class="container">
+        <h3 class="my-3">In order to purchase in your shopping cart items, you must supply following information fist.</h3>
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <div class="card bg-warning">
+                            <div class="card-body">
+                                <form th:action="@{/shopping/ui/buy-transaction}"
+                                      th:object="${userInfo}" method="post">
+                                    <div class="mb-3">
+                                        <label class="form-label">Name</label>
+                                        <input type="text"
+                                               th:field="*{name}"
+                                               class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="text"
+                                               th:field="*{email}"
+                                               class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone</label>
+                                        <input type="text"
+                                               th:field="*{phoneNumber}"
+                                               class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Address</label>
+                                        <input type="text"
+                                               th:field="*{address}"
+                                               class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">CreditNumber</label>
+                                        <input type="text"
+                                               th:field="*{creditCardNumber}"
+                                               class="form-control">
+                                    </div>
+                                    <input type="submit" value="buy"
+                                           class="btn btn-primary w-100">
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col p-3 bg-body-tertiary rounded-3">
+                <ul class="p-2">
+                    <li>Next day delivery is guaranteed.</li>
+                    <li>$3 delivery charge is applied to all orders.</li>
+                </ul>
+                <table id="table-bg-color" class="table mt-2">
+                    <tr>
+                        <td>Total</td>
+                        <td th:text="${#numbers.formatCurrency(totalPrice)}"></td>
+                    </tr>
+                    <tr>
+                        <td>Delivery Charge:</td>
+                        <td>$3</td>
+                    </tr>
+
+                    <tr>
+                        <td>Total</td>
+                        <td th:text="${#numbers.formatCurrency(totalPrice + 3)}"></td>
+                    </tr>
+                </table>
+
+
+            </div>
         </div>
-        <div class="col">
-            <ul class="p-2">
-                <li>Next day delivery is guaranteed.</li>
-                <li>$3 delivery charge is applied to all orders.</li>
-            </ul>
-                    <table id="table-bg-color" class="table mt-2">
-                        <tr>
-                            <td>Total</td>
-                            <td th:text="${#numbers.formatCurrency(totalPrice)}"></td>
-                        </tr>
-                        <tr>
-                            <td>Delivery Charge:</td>
-                            <td>$3</td>
-                        </tr>
 
-                        <tr>
-                            <td>Total</td>
-                            <td th:text="${#numbers.formatCurrency(totalPrice + 3)}"></td>
-                        </tr>
-                    </table>
-
-
-        </div>
     </div>
+
 
 </main>
 </body>

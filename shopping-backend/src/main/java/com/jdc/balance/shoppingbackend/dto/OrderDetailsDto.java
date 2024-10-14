@@ -1,15 +1,19 @@
 package com.jdc.balance.shoppingbackend.dto;
 
-import com.jdc.balance.shoppingbackend.entity.Product;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 public class OrderDetailsDto {
-    private Integer id;
-    private String customerName;
-    private Set<Product> products = new HashSet<>();
-
+    private int orderNumber;
+    private Set<CartItemDto> productList=
+            new HashSet<>();
+    private String name;
+    private String address;
+    private String email;
+    private String phone;
 }

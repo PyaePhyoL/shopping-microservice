@@ -17,11 +17,15 @@ public class OrderDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String customerName;
-    @OneToMany
-    private Set<Product> products = new HashSet<>();
+    private String customerEmail;
+    private String customerPhone;
+    private String customerAddress;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private Set<OrderProduct> products = new HashSet<>();
 
-    public void addProduct(Product product) {
-        products.add(product);
+    public void addProduct(OrderProduct product) {
+        this.products.add(product);
     }
+
 }
 

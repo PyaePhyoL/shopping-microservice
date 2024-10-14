@@ -1,10 +1,12 @@
 package com.jdc.balance.shoppingui.controller;
 
 import com.jdc.balance.shoppingui.dto.ProductDto;
+import com.jdc.balance.shoppingui.dto.RequestDataDto;
 import com.jdc.balance.shoppingui.dto.UserInfoDto;
 import com.jdc.balance.shoppingui.service.CartService;
 import com.jdc.balance.shoppingui.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -75,5 +77,13 @@ public class ProductController {
     public String viewCheckOut(Model model) {
         model.addAttribute("userInfo", new UserInfoDto());
         return "checkoutView";
+    }
+
+    @PostMapping(value = "/buy-transaction", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String makeBuyTransaction(UserInfoDto userInfo, @ModelAttribute("totalPrice") double amount) {
+        productService.makeBuyTransaction(userInfo, amount);
+        cartService.saveOrderDetails(userInfo);
+        cartService.clearCart();
+        return "redirect:/shopping/ui/";
     }
 }

@@ -8,6 +8,7 @@ import com.jdc.balance.paymentgateway.service.PaymentService;
 import com.jdc.balance.paymentgateway.util.EntityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +26,7 @@ public class PaymentController {
         return EntityUtil.toAccountDto(paymentService.createAccount(accountDto.getName(), accountDto.getAmount()));
     }
 
-    @PostMapping("/buy-transaction")
+    @PostMapping(value = "/buy-transaction" , consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String>  makeBuyTransaction(@RequestBody RequestDataDto requestDataDto) {
         if (paymentService.existsAccount(requestDataDto.name(), requestDataDto.creditNumber())) {
             paymentService.buyItemsTransaction(
@@ -38,7 +39,7 @@ public class PaymentController {
         } else {
             throw new AccountNotFoundException("Account not found");
         }
-        return new ResponseEntity<>("Success Buy Transaction", HttpStatus.OK);
+        return ResponseEntity.ok("Buy Successful");
     }
 
     @PostMapping("/deposit")

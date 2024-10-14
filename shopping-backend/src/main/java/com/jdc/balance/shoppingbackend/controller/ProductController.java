@@ -1,12 +1,11 @@
 package com.jdc.balance.shoppingbackend.controller;
 
+import com.jdc.balance.shoppingbackend.dto.OrderDetailsDto;
 import com.jdc.balance.shoppingbackend.dto.ProductDto;
 import com.jdc.balance.shoppingbackend.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +24,11 @@ public class ProductController {
     @GetMapping("/products/{id}")
     public List<ProductDto> getProductsByCategory(@PathVariable("id") int id) {
         return productService.getProductsByCategory(id);
+    }
+
+    @PostMapping("/save-order-details")
+    public ResponseEntity<String> saveOrderDetails(@RequestBody OrderDetailsDto orderDetailsDto) {
+        productService.saveOrderDetails(orderDetailsDto);
+        return ResponseEntity.ok("Order details saved");
     }
 }
