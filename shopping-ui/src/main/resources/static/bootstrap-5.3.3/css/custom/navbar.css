@@ -1,0 +1,44 @@
+.nav-coffee {
+    background-color: #432f21;
+}
+
+.nav-coffee li {
+    font-size: 18px;
+}
+
+.cs-button-solid {
+    font-size: 1rem;
+    font-weight: 700;
+    /* 46px - 56px */
+    line-height: 3rem;
+    text-align: center;
+    text-decoration: none;
+    min-width: 8rem;
+    margin-right: 20px;
+    margin-left: 20px;
+    /* prevents padding from adding to the width */
+    box-sizing: border-box;
+    padding: 0 1.5rem;
+    background-color: var(--primary);
+    color: var(--bodyTextColorWhite);
+    border-radius: 0.25rem;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+.cs-button-solid:before {
+    content: "";
+    width: 0%;
+    height: 100%;
+    background: #000;
+    opacity: 1;
+    border-radius: 0.25rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: width 0.3s;
+}
+.cs-button-solid:hover:before {
+    width: 100%;
+}

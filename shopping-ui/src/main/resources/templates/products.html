@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/master-layout :: layout(~{::main})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <main role="main">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="container">
+          <a th:href="@{/shopping/ui/view-product/3}" class="btn btn-success mb-3 rounded d-block w-100 px-3 py-2">Bakery</a>
+          <a th:href="@{/shopping/ui/view-product/2}" class="btn btn-success mb-3 rounded d-block w-100 px-3 py-2">Meats</a>
+          <a th:href="@{/shopping/ui/view-product/1}" class="btn btn-success mb-3 rounded d-block w-100 px-3 py-2">Diary</a>
+          <a th:href="@{/shopping/ui/view-product/4}" class="btn btn-success mb-3 rounded d-block w-100 px-3 py-2">Fruits & Vege</a>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="container">
+          <table class="table table-warning table-borderless">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${products}">
+              <td><img th:src="@{'/images/products/' + ${product.name} + '.png'}" alt=""></td>
+              <td th:text="${product.name}"></td>
+              <td th:text="${product.price}"></td>
+              <td> <a th:href="@{'/shopping/ui/add-to-cart/' + ${product.id}}" class="btn btn-outline-success">Purchase</a> </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>

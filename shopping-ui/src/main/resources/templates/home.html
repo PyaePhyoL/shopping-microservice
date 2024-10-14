@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/master-layout :: layout(~{::main})}">
+
+<body>
+    <main role="main">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col">
+                    <h3>Welcome to the online home of the Bean Green Grocer.</h3>
+                    <br>
+                    <p class="lead">Enjoy browsing and learning more about our
+                        unique home delivery service bringing you fresh
+                        organic produce,dairy,meats,breads and other
+                        delicious and healthy items to you doorstep.</p>
+                </div>
+                <div class="col">
+                    <div class="row row-cols-2 mb-3">
+                        <div class="col">
+                            <a th:href="@{/shopping/ui/view-product?id=3}">
+                                <img class="img-fluid shadow rounded-3" src="../static/images/categories/bakery.jpg"
+                                     th:src="@{/images/categories/bakery.jpg}" alt="">
+                            </a>
+
+                        </div>
+                        <div class="col">
+                            <a th:href="@{/shopping/ui/view-product?id=1}">
+                                <img class="img-fluid shadow rounded-3" src="../static/images/categories/dairy.jpg"
+                                     th:src="@{/images/categories/dairy.jpg}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row row-cols-2 mb-3">
+                        <div class="col">
+                            <a th:href="@{/shopping/ui/view-product?id=4}">
+                                <img class="img-fluid shadow rounded-3" src="../static/images/categories/fruitveg.jpg"
+                                     th:src="@{/images/categories/fruitveg.jpg}" alt="">
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a th:href="@{/shopping/ui/view-product?id=2}">
+                                <img class="img-fluid shadow rounded-3" src="../static/images/categories/meats.jpg"
+                                     th:src="@{/images/categories/meats.jpg}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

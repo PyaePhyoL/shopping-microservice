@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/master-layout :: layout(~{::main})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <main role="main">
+        <div class="container">
+            <div class="d-flex justify-content-around mb-5">
+                <a class="btn btn-primary" th:href="@{/shopping/ui/clear-cart}">Clear Cart</a>
+                <a class="btn btn-primary" th:href="@{/shopping/ui/}">Continue Shopping</a>
+                <a class="btn btn-primary" th:href="@{/shopping/ui/checkout}">Proceed to Checkout</a>
+            </div>
+            <table class="table table-striped" th:if="${!cartItems.isEmpty()}">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Price per Item</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cartItem : ${cartItems}">
+                        <td><img th:src="@{'/images/products/' + ${cartItem.name} + '.png'}" alt=""></td>
+                        <td th:text="${cartItem.getName()}"></td>
+                        <td th:text=" '$' + ${cartItem.getPrice()}"></td>
+                        <td>
+                            <p class="d-flex" th:text="${cartItem.getQuantity()}"></p>
+                            <a th:href="@{'/shopping/ui/increase-qty/' + ${cartItem.getProductId()}}" class="btn btn-success">+</a>
+                            <a th:href="@{'/shopping/ui/decrease-qty/' + ${cartItem.getProductId()}}" class="btn btn-danger">-</a>
+                        </td>
+                        <td><a th:href="@{'/shopping/ui/remove-cart/' + ${cartItem.getProductId()}}" class="btn btn-outline-danger"> Remove</a> </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="container bg-white d-flex justify-content-center align-items-center" th:if="${cartItems.isEmpty()}">
+                <p> No Items </p>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>
