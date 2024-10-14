@@ -17,7 +17,7 @@ public interface AccountDao extends JpaRepository<Account, Integer> {
     @Query("""
     select a.amount from Account a where a.name = :name and a.cardNumber = :cardNumber
 """)
-    public double getBalance(@Param("name") String name, @Param("cardNumber") String cardNumber);
+    double getBalance(@Param("name") String name, @Param("cardNumber") String cardNumber);
 
     boolean existsByNameAndCardNumber(String name, String cardNumber);
 }

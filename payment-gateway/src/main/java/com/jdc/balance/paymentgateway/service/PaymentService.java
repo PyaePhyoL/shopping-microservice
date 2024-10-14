@@ -60,10 +60,9 @@ public class PaymentService {
     }
 
     @Transactional
-    public double buyItemsTransaction(String name, double amount, String cardNumber,
-                                       String owner, String ownerCardNumber) {
+    public void buyItemsTransaction(String name, double amount, String cardNumber,
+                                    String owner, String ownerCardNumber) {
         deposit(owner, amount, ownerCardNumber);
         withdraw(name, amount, cardNumber);
-        return amount;
     }
 }
