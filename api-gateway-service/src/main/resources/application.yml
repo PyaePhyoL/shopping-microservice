@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: api gateway service
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: shopping backend
+            uri: lb://SHOPPING-BACKEND
+            predicates:
+              - Path=/shopping/backend/**
+
+          - id: shopping ui
+            uri: lb://SHOPPING-UI
+            predicates:
+              - Path=/shopping/ui/**,/bootstrap-5.3.3/**,/images/**
+
+          - id: payment gateway
+            uri: lb://PAYMENT-GATEWAY
+            predicates:
+              - Path=/account/**
+server:
+  port: 8080
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8083/eureka

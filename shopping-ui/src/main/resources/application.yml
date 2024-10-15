@@ -1,5 +1,9 @@
 spring:
   application:
-    name: shopping ui
+    name: shopping-ui
 server:
-  port: 8080
+  port: 0
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8083/eureka

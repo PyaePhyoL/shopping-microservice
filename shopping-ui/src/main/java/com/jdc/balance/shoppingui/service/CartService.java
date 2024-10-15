@@ -20,7 +20,7 @@ public class CartService {
 
     public CartService(ProductService productService) {
         this.productService = productService;
-        backendRestClient = RestClient.builder().baseUrl("http://localhost:8090/shopping/backend").build();
+        backendRestClient = RestClient.builder().baseUrl("http://localhost:8080/shopping/backend").build();
     }
 
     @Getter

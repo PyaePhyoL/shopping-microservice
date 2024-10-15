@@ -17,8 +17,8 @@ public class ProductService {
     private final RestClient paymentRestClient;
 
     public ProductService() {
-        backendRestClient = RestClient.builder().baseUrl("http://localhost:8090/shopping/backend").build();
-        paymentRestClient = RestClient.builder().baseUrl("http://localhost:8070/account").build();
+        backendRestClient = RestClient.builder().baseUrl("http://localhost:8080/shopping/backend").build();
+        paymentRestClient = RestClient.builder().baseUrl("http://localhost:8080/account").build();
     }
 
 

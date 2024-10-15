@@ -19,6 +19,8 @@
         <module>shopping-backend</module>
         <module>shopping-ui</module>
         <module>payment-gateway</module>
+        <module>eureka-server</module>
+        <module>api-gateway-service</module>
     </modules>
 
     <dependencyManagement>
